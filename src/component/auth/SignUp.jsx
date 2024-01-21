@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import {  createUserWithEmailAndPassword } from "firebase/auth";
 import {auth} from '../../firebase'
+import {Link, useNavigate} from 'react-router-dom'
 
 const SignUp = () => {
 
-    // const auth = getAuth();
+    const navigate = useNavigate();
     const [email , setEmail] = useState('')
     const [password , setPassword] = useState('')
 
@@ -14,6 +15,7 @@ const SignUp = () => {
     .then((userCredential) => {
     // Signed in 
     console.log(userCredential)
+    navigate('/auth-detail')
     // const user = userCredential.user;
     // ...
   })
@@ -44,6 +46,8 @@ const SignUp = () => {
          />
         <button type='submit'>Sign Up</button>
       </form>
+      <p>Alredy have account !!! <Link to={`/sign-in`}>log in</Link> </p>
+      <p><Link to={`/google-sign`}>login with google</Link></p>
     </div>
   )
 }
