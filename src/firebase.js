@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider , signInWithPopup ,getAuth   } from "firebase/auth";
-
+import { getAuth   } from "firebase/auth";
+import {  getStorage, listAll , ref} from 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: "AIzaSyA1lUUGCdz8qMSr8vy1fhpDUe_rWHH4Iv8",
@@ -12,14 +12,33 @@ const firebaseConfig = {
   measurementId: "G-5DTV9R100E"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-
-
-
-// Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-// provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-export {auth , provider ,  signInWithPopup , GoogleAuthProvider }
+
+
+const storage = getStorage();
+const liseRef = ref(storage,'images/pema.jpg');
+
+listAll(liseRef)
+.then((res)=>{
+  res.prefixes.forEach((folderRef)=>{
+    console.log(folderRef)
+  })
+  res.items.forEach((itemsRef)=>{
+    console.log(itemsRef);
+  })
+}).catch((error)=>{
+  console.log(error);
+})
+
+
+
+
+
+
+export {auth }
+
+
+
+
+

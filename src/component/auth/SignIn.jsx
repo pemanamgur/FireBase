@@ -4,14 +4,15 @@ import { Link , useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
 
 
+
 const SignIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // function onChange(value) {
-  //   console.log("Captcha value:", value);
-  // }
+  function onChange(value) {
+    console.log("Captcha value:", value);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +46,7 @@ const SignIn = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
   
-  
+ 
         <button type="submit">Log in</button>
       </form>
       <p>
